@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_work/core/app/app_constants.dart';
 import 'package:flutter_test_work/core/utils/styles_util.dart';
-import 'package:flutter_test_work/modules/place_details/presentation/widgets/nerby_places_widget.dart';
 import 'package:flutter_test_work/modules/place_details/presentation/widgets/widgets.dart';
 import 'package:flutter_test_work/providers/places/place_details_provider.dart';
 import 'package:flutter_test_work/providers/screen_data_provider.dart';
@@ -36,19 +35,27 @@ class PlaceDetailsPage extends StatelessWidget {
       child: Scaffold(
         extendBody: true,
         persistentFooterButtons: [
-          if (place.state == ScreenState.loaded)
-            Container(
-              padding: const EdgeInsets.all(16),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: AppConstants.accent,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                'Reservar',
-                style: StylesUtil.w700(16, Colors.white),
+          AnimatedOpacity(
+            opacity: place.state == ScreenState.loaded ? 1 : 0,
+            duration: const Duration(milliseconds: 200),
+            child: AnimatedScale(
+              scale: place.state == ScreenState.loaded ? 1 : 0,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.linearToEaseOut,
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: AppConstants.accent,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  'Reservar',
+                  style: StylesUtil.w700(16, Colors.white),
+                ),
               ),
             ),
+          ),
         ],
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
