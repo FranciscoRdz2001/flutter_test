@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/widgets.dart';
 
 enum ScreenState { loading, loaded, error, none }
@@ -25,10 +27,18 @@ abstract class ScreenDataProvider<T> extends ChangeNotifier {
   }
 
   Future<T?> callService();
-  Future<void> getData() async {
-    data = null;
+  Future<void> getData({bool withPagination = false}) async {
+    if (!withPagination) data = null;
     state = ScreenState.loading;
-    data = await callService();
+    final res = await callService();
+
+    if (withPagination && data is List) {
+      (_data as List).addAll(res as List);
+      notifyListeners();
+    } else {
+      log('Error $withPagination ${res.runtimeType}');
+      data = res;
+    }
     state = data != null ? ScreenState.loaded : ScreenState.error;
   }
 }

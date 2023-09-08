@@ -1,14 +1,19 @@
 import 'package:flutter_test_work/domain/models/places/detailed_place_model.dart';
+import 'package:flutter_test_work/domain/models/places/paginated_places_model.dart';
 import 'package:flutter_test_work/domain/models/places/place_model.dart';
 import 'package:flutter_test_work/domain/services/base_service.dart';
 
 class PlacesService extends BaseService {
-  Future<List<PlaceModel>?> getPlaces() async {
-    final response = await api.getMethod<List<PlaceModel>>(
-      endpoint: 'places/getPlacesByFilter?mode=phone',
+  Future<PaginatedPlacesModel?> getPlaces({required int page}) async {
+    final response = await api.getMethod<PaginatedPlacesModel>(
+      endpoint: 'places/getPlacesByFilter?mode=phone&page=$page',
       mapper: (json) {
         final list = json['data'] as List;
-        return list.map((e) => PlaceModel.fromJson(e)).toList();
+        final data = list.map((e) => PlaceModel.fromJson(e)).toList();
+        return PaginatedPlacesModel(
+          places: data,
+          hasMore: json['showMore'],
+        );
       },
     );
 

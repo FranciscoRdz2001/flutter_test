@@ -14,7 +14,7 @@ class PlaceDetailsModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => PlaceDetailsProvider()..getData(id),
+      create: (_) => PlaceDetailsProvider()..getData(id: id),
       child: const PlaceDetailsPage(),
     );
   }

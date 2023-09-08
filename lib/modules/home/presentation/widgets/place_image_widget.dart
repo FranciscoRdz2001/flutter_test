@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_work/core/app/app_constants.dart';
 import 'package:flutter_test_work/core/utils/utils.dart';
@@ -24,11 +25,26 @@ class PlaceImageWidget extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            Image.network(
-              image,
+            CachedNetworkImage(
+              imageUrl: image,
               width: size,
               height: size,
               fit: BoxFit.cover,
+              progressIndicatorBuilder: (context, url, progress) {
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: progress.progress,
+                  ),
+                );
+              },
+              errorWidget: (context, url, error) {
+                return const Center(
+                  child: Icon(
+                    Icons.error,
+                    color: AppConstants.greyColor,
+                  ),
+                );
+              },
             ),
             Positioned(
               child: Padding(
@@ -45,7 +61,7 @@ class PlaceImageWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(
-                        Icons.star,
+                        Icons.star_rounded,
                         color: Colors.yellow,
                         size: 16,
                       ),
@@ -57,7 +73,7 @@ class PlaceImageWidget extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: StylesUtil.w700(
                             10,
-                            AppConstants.greyColor,
+                            Colors.grey[600],
                           ),
                         ),
                       ),

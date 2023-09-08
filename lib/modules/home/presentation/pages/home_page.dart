@@ -11,32 +11,57 @@ class HomeModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => PlacesProvider(),
+      create: (_) => PlacesProvider(pagesToLoad: 4),
       child: const HomePage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollHandler);
+
+    super.initState();
+  }
+
+  void _scrollHandler() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      final places = Provider.of<PlacesProvider>(context, listen: false);
+      places.loadOtherPage();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final places = Provider.of<PlacesProvider>(context);
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        physics: const BouncingScrollPhysics(),
+        child: SafeArea(
           child: Padding(
             padding: AppConstants.screenPadding,
             child: Column(
               children: [
-                if (places.state == ScreenState.loading)
+                if (places.state == ScreenState.loading && !places.inPagination)
                   const CircularProgressIndicator()
                 else if (places.state == ScreenState.error)
                   const Text('No se pudieron cargar los lugares')
-                else
+                else ...[
                   ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -49,6 +74,13 @@ class HomePage extends StatelessWidget {
                       );
                     },
                   ),
+                  if (places.state == ScreenState.loading &&
+                      places.inPagination) ...[
+                    const SizedBox(height: 16),
+                    const CircularProgressIndicator(),
+                  ]
+                ],
+                const SizedBox(height: 16),
               ],
             ),
           ),

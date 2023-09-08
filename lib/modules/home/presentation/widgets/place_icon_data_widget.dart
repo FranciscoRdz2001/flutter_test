@@ -22,9 +22,11 @@ class PlaceIconDataWidget extends StatelessWidget {
       children: [
         Icon(icon, color: iconColor, size: size),
         const SizedBox(width: 4),
-        Text(
-          data,
-          style: StylesUtil.w400(size, fontColor ?? Colors.grey[500]),
+        Expanded(
+          child: Text(
+            data,
+            style: StylesUtil.w400(size, fontColor ?? Colors.grey[500]),
+          ),
         ),
       ],
     );
