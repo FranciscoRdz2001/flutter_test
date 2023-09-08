@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test_work/core/app/app_constants.dart';
 import 'package:flutter_test_work/core/utils/styles_util.dart';
@@ -34,9 +36,34 @@ class PlaceDataWidget extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: Text(
-                  place.name,
-                  style: StylesUtil.w700(18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      place.name,
+                      style: StylesUtil.w700(18),
+                    ),
+                    const SizedBox(height: 4),
+                    SizedBox(
+                      height: 10,
+                      child: ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 5,
+                        separatorBuilder: (context, x) =>
+                            const SizedBox(width: 0.5),
+                        itemBuilder: (context, x) {
+                          final filled = (x + 1) <= place.reviews.totalScore;
+                          return Icon(
+                            Icons.star_rounded,
+                            size: 14,
+                            color:
+                                filled ? AppConstants.accent : Colors.grey[300],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

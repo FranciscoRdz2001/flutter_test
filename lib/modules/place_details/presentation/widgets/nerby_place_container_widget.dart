@@ -9,44 +9,67 @@ class NerbyPlaceContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.4,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: AppConstants.greyColor,
-      ),
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(16)),
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.4,
+        decoration: const BoxDecoration(
+          color: AppConstants.greyColor,
+        ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.network(
               place.imgUrl,
               fit: BoxFit.cover,
             ),
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              gradient: LinearGradient(
-                colors: [
-                  Colors.black.withOpacity(0.8),
-                  Colors.transparent,
+            Container(
+              alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.black.withOpacity(0.8),
+                    Colors.transparent,
+                  ],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                ),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    place.name,
+                    style: StylesUtil.w500(14, Colors.white),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.location_on,
+                        color: AppConstants.accent,
+                        size: 12,
+                      ),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: Text(
+                          place.address,
+                          style: StylesUtil.w400(10, Colors.grey[200]),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
               ),
             ),
-            child: Text(
-              place.name,
-              style: StylesUtil.w500(14, Colors.white),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
