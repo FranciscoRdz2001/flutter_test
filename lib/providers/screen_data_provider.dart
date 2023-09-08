@@ -1,13 +1,15 @@
 import 'package:flutter/widgets.dart';
 
+enum ScreenState { loading, loaded, error, none }
+
 abstract class ScreenDataProvider<T> extends ChangeNotifier {
   T? _data;
-  bool _isLoading = false;
+  ScreenState _state = ScreenState.none;
 
   /// Loading getter and setter
-  bool get isLoading => _isLoading;
-  set isLoading(bool value) {
-    _isLoading = value;
+  ScreenState get state => _state;
+  set state(ScreenState value) {
+    _state = value;
     notifyListeners();
   }
 
@@ -24,8 +26,9 @@ abstract class ScreenDataProvider<T> extends ChangeNotifier {
 
   Future<T?> callService();
   Future<void> _getData() async {
-    isLoading = true;
+    data = null;
+    state = ScreenState.loading;
     data = await callService();
-    isLoading = false;
+    state = data != null ? ScreenState.loaded : ScreenState.error;
   }
 }

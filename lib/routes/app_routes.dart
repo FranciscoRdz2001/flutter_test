@@ -5,7 +5,7 @@ import 'package:flutter_test_work/routes/routes_names.dart';
 class AppRoutes {
   static Map<String, Widget Function(BuildContext)> get routes {
     return {
-      RoutesNames.home: (context) => const HomePage(),
+      RoutesNames.home: (context) => const HomeModule(),
     };
   }
 }

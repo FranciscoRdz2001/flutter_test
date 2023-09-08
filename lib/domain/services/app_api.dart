@@ -22,8 +22,9 @@ class AppApi {
   }) async {
     try {
       final uri = Uri.parse('${AppConstants.apiUrl}/$endpoint');
+      log('Calling GET: $uri');
       final response = await http.get(uri, headers: headers);
-
+      log('Response: ${response.body}');
       final statusCode = response.statusCode;
       if (_successStatusCodes.contains(statusCode)) {
         final json = response.body;

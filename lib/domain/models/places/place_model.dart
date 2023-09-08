@@ -10,10 +10,11 @@ class PlaceModel {
   final String imageUrl;
   final String logoUrl;
   final String name;
-  final String shortName;
-  final String mainCategory;
-  final String scheduleTime;
-  final double score;
+  final String schedule;
+  final String categories;
+  final String? shortName;
+  final String? mainCategory;
+  final int score;
   final String priceRange;
   final String location;
 
@@ -29,15 +30,16 @@ class PlaceModel {
     required this.imageUrl,
     required this.logoUrl,
     required this.name,
-    required this.shortName,
-    required this.mainCategory,
-    required this.scheduleTime,
     required this.score,
     required this.priceRange,
+    required this.categories,
     required this.location,
+    required this.schedule,
+    this.shortName,
+    this.mainCategory,
   });
 
-  factory PlaceModel.fromJson(dynamic json) {
+  factory PlaceModel.fromJson(Map<String, dynamic> json) {
     return PlaceModel(
       id: json['id'],
       url: json['url'],
@@ -52,10 +54,11 @@ class PlaceModel {
       name: json['name'],
       shortName: json['short_name'],
       mainCategory: json['main_category'],
-      scheduleTime: json['schedule_time'],
+      schedule: json['schedule'],
       score: json['score'],
       priceRange: json['price_range'],
       location: json['location'],
+      categories: json['categories'],
     );
   }
 }
