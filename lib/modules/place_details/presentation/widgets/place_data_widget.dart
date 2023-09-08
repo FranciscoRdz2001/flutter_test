@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_work/core/app/app_constants.dart';
 import 'package:flutter_test_work/core/utils/styles_util.dart';
@@ -19,11 +20,13 @@ class PlaceDataWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            place.categories.first.name,
-            style: StylesUtil.w400(14, Colors.grey[400]),
-          ),
-          const SizedBox(height: 8),
+          if (place.categories.isNotEmpty) ...[
+            Text(
+              place.categories.first.name,
+              style: StylesUtil.w400(14, Colors.grey[400]),
+            ),
+            const SizedBox(height: 8),
+          ],
           Row(
             children: [
               CircleAvatar(
@@ -90,10 +93,12 @@ class PlaceDataWidget extends StatelessWidget {
               height: 200,
               child: Stack(
                 children: [
-                  Image.network(
-                    place.mainImg,
+                  CachedNetworkImage(
+                    imageUrl: place.mainImg,
                     height: 200,
+                    width: double.infinity,
                     fit: BoxFit.cover,
+                    errorWidget: (_, __, ___) => const Icon(Icons.error),
                   ),
                   Positioned(
                     right: 0,

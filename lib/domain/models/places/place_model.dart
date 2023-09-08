@@ -11,10 +11,10 @@ class PlaceModel {
   final String logoUrl;
   final String name;
   final String schedule;
-  final String categories;
+  final String? categories;
   final String? shortName;
   final String? mainCategory;
-  final int score;
+  final double score;
   final String priceRange;
   final String location;
 
@@ -55,7 +55,7 @@ class PlaceModel {
       shortName: json['short_name'],
       mainCategory: json['main_category'],
       schedule: json['schedule'],
-      score: json['score'],
+      score: json['score'].toDouble(),
       priceRange: json['price_range'],
       location: json['location'],
       categories: json['categories'],

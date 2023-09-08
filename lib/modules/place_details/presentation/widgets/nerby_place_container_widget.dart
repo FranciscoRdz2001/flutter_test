@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_work/core/app/app_constants.dart';
 import 'package:flutter_test_work/core/utils/utils.dart';
@@ -19,9 +20,10 @@ class NerbyPlaceContainerWidget extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.network(
-              place.imgUrl,
+            CachedNetworkImage(
+              imageUrl: place.imgUrl,
               fit: BoxFit.cover,
+              errorWidget: (_, __, ___) => const Icon(Icons.error),
             ),
             Container(
               alignment: Alignment.bottomCenter,

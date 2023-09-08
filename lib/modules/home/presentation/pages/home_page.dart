@@ -37,9 +37,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _scrollHandler() {
-    if (_scrollController.position.pixels ==
-        _scrollController.position.maxScrollExtent) {
-      final places = Provider.of<PlacesProvider>(context, listen: false);
+    final places = Provider.of<PlacesProvider>(context, listen: false);
+    if (_scrollController.position.pixels >=
+            _scrollController.position.maxScrollExtent &&
+        places.state != ScreenState.loading) {
       places.loadOtherPage();
     }
   }

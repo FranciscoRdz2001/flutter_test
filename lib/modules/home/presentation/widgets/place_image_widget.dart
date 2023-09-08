@@ -4,7 +4,7 @@ import 'package:flutter_test_work/core/app/app_constants.dart';
 import 'package:flutter_test_work/core/utils/utils.dart';
 
 class PlaceImageWidget extends StatelessWidget {
-  final int score;
+  final double score;
   final String image;
   const PlaceImageWidget({
     super.key,

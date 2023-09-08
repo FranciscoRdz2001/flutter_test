@@ -47,12 +47,14 @@ class PlaceContainerWidget extends StatelessWidget {
                     style: StylesUtil.w700(14, AppConstants.blackColor),
                   ),
                   const SizedBox(height: 10),
-                  PlaceIconDataWidget(
-                    icon: Icons.airplane_ticket,
-                    iconColor: AppConstants.pinkColor,
-                    data: place.categories,
-                  ),
-                  const SizedBox(height: 4),
+                  if (place.categories != null) ...[
+                    PlaceIconDataWidget(
+                      icon: Icons.airplane_ticket,
+                      iconColor: AppConstants.pinkColor,
+                      data: place.categories!,
+                    ),
+                    const SizedBox(height: 4),
+                  ],
                   PlaceIconDataWidget(
                     icon: Icons.access_time_filled_outlined,
                     iconColor: AppConstants.blueColor,
