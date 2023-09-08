@@ -13,6 +13,7 @@ class PlaceDetailsProvider extends ScreenDataProvider<DetailedPlaceModel> {
 
   @override
   Future<void> getData({bool withPagination = false, int? id}) async {
+    if (id == null) return;
     data = null;
     state = ScreenState.loading;
     data = await callService(id);

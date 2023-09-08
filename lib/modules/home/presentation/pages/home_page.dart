@@ -3,6 +3,7 @@ import 'package:flutter_test_work/core/app/app_constants.dart';
 import 'package:flutter_test_work/modules/home/presentation/widgets/widgets.dart';
 import 'package:flutter_test_work/providers/places/places_provider.dart';
 import 'package:flutter_test_work/providers/screen_data_provider.dart';
+import 'package:flutter_test_work/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeModule extends StatelessWidget {
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 if (places.state == ScreenState.loading && !places.inPagination)
-                  const CircularProgressIndicator()
+                  const LoadingWidget()
                 else if (places.state == ScreenState.error)
                   const Text('No se pudieron cargar los lugares')
                 else ...[
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                   if (places.state == ScreenState.loading &&
                       places.inPagination) ...[
                     const SizedBox(height: 16),
-                    const CircularProgressIndicator(),
+                    const LoadingWidget()
                   ]
                 ],
                 const SizedBox(height: 16),

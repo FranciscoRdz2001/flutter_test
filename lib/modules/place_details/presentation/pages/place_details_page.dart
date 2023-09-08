@@ -4,8 +4,9 @@ import 'package:flutter_test_work/core/utils/styles_util.dart';
 import 'package:flutter_test_work/modules/place_details/presentation/widgets/widgets.dart';
 import 'package:flutter_test_work/providers/places/place_details_provider.dart';
 import 'package:flutter_test_work/providers/screen_data_provider.dart';
-import 'package:flutter_test_work/widgets/custom_button_widget.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../widgets/widgets.dart';
 
 class PlaceDetailsModule extends StatelessWidget {
   final int id;
@@ -74,7 +75,7 @@ class PlaceDetailsPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   if (place.state == ScreenState.loading)
-                    const Center(child: CircularProgressIndicator())
+                    const LoadingWidget()
                   else if (place.state == ScreenState.error)
                     const Center(child: Text('Error'))
                   else if (place.state == ScreenState.loaded) ...[
