@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_work/modules/home/presentation/pages/home_page.dart';
+import 'package:flutter_test_work/routes/app_routes.dart';
 
 void main() => runApp(const MyApp());
 
@@ -8,9 +9,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'App Test',
-      home: HomePage(),
+    return MaterialApp(
+      home: const HomePage(),
+      routes: AppRoutes.routes,
     );
   }
 }
