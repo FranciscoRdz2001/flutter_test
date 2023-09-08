@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_work/core/app/app_theme.dart';
 import 'package:flutter_test_work/modules/home/presentation/pages/home_page.dart';
 import 'package:flutter_test_work/routes/app_routes.dart';
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: const HomeModule(),
       routes: AppRoutes.routes,
+      theme: AppTheme.lightMode,
     );
   }
 }

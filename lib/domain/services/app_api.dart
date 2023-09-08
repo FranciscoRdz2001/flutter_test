@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_test_work/core/app/app_constants.dart';
@@ -16,7 +17,7 @@ class AppApi {
   static final AppApi _instance = AppApi._internal();
 
   Future<ApiResponseModel<T>> getMethod<T>({
-    required T Function(dynamic json) mapper,
+    required T Function(Map<String, dynamic> json) mapper,
     required String endpoint,
     Map<String, String>? headers,
   }) async {
@@ -28,7 +29,7 @@ class AppApi {
       final statusCode = response.statusCode;
       if (_successStatusCodes.contains(statusCode)) {
         final json = response.body;
-        final data = mapper(json);
+        final data = mapper(jsonDecode(json));
         return ApiResponseModel<T>(
           message: 'Success',
           statusCode: statusCode,
@@ -42,7 +43,7 @@ class AppApi {
         );
       }
     } catch (e) {
-      log('Error: $e');
+      log('Error: $e ');
       return ApiResponseModel<T>(
         message: 'Error: $e',
         statusCode: 500,

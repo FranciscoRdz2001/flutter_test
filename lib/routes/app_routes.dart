@@ -6,6 +6,7 @@ class AppRoutes {
   static Map<String, Widget Function(BuildContext)> get routes {
     return {
       RoutesNames.home: (context) => const HomeModule(),
+      RoutesNames.placeDetail: (context) => const PlaceDetailsModule(id: -1),
     };
   }
 }

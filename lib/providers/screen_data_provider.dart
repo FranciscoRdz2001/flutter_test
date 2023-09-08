@@ -21,11 +21,11 @@ abstract class ScreenDataProvider<T> extends ChangeNotifier {
   }
 
   ScreenDataProvider() {
-    _getData();
+    getData();
   }
 
   Future<T?> callService();
-  Future<void> _getData() async {
+  Future<void> getData() async {
     data = null;
     state = ScreenState.loading;
     data = await callService();

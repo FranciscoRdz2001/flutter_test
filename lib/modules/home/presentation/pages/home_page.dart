@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_work/core/app/app_constants.dart';
 import 'package:flutter_test_work/modules/home/presentation/widgets/widgets.dart';
-import 'package:flutter_test_work/providers/places_provider.dart';
+import 'package:flutter_test_work/providers/places/places_provider.dart';
 import 'package:flutter_test_work/providers/screen_data_provider.dart';
 import 'package:provider/provider.dart';
 
