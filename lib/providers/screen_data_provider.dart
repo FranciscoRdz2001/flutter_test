@@ -2,6 +2,10 @@ import 'package:flutter/widgets.dart';
 
 enum ScreenState { loading, loaded, error, none }
 
+/// Base class for screen data providers
+/// This class is used to fetch data from the API
+/// and notify the listeners when the data is ready
+/// or when an error occurs
 abstract class ScreenDataProvider<T> extends ChangeNotifier {
   T? _data;
   ScreenState _state = ScreenState.none;

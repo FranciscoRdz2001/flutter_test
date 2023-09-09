@@ -5,6 +5,9 @@ import 'package:flutter_test_work/core/app/app_constants.dart';
 import 'package:flutter_test_work/domain/models/api/api_response_model.dart';
 import 'package:http/http.dart' as http;
 
+/// AppApi
+/// This class is used to make API calls
+/// use mapper to map the response to a model
 class AppApi {
   static const _successStatusCodes = [200, 201, 202, 203, 204];
 

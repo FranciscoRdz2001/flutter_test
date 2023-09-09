@@ -2,6 +2,10 @@ import 'package:flutter_test_work/domain/models/places/place_model.dart';
 import 'package:flutter_test_work/domain/services/services.dart';
 import 'package:flutter_test_work/providers/screen_data_provider.dart';
 
+/// Provider for the places page
+/// This provider is used to get the data for the places page
+/// and notify the listeners when the data is ready
+/// This provider also supports pagination
 class PlacesProvider extends ScreenDataProvider<List<PlaceModel>> {
   final _service = PlacesService();
   int _page = 0;
