@@ -12,13 +12,8 @@ class PlacesProvider extends ScreenDataProvider<List<PlaceModel>> {
   bool get inPagination => _inPagination;
 
   PlacesProvider({int pagesToLoad = 0}) {
-    initializeData(pagesToLoad);
-  }
-
-  Future<void> initializeData(int pagesToLoad) async {
-    data = [];
     for (int i = 0; i < pagesToLoad; i++) {
-      await loadOtherPage();
+      loadOtherPage();
     }
   }
 
@@ -32,7 +27,7 @@ class PlacesProvider extends ScreenDataProvider<List<PlaceModel>> {
   Future<void> loadOtherPage() async {
     if (!_hasMoreInPagination) return;
     _inPagination = true;
-    await getData(withPagination: true);
     _page++;
+    getData(withPagination: true);
   }
 }

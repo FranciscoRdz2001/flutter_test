@@ -20,10 +20,6 @@ abstract class ScreenDataProvider<T> extends ChangeNotifier {
     notifyListeners();
   }
 
-  ScreenDataProvider() {
-    getData();
-  }
-
   Future<T?> callService();
   Future<void> getData({bool withPagination = false}) async {
     if (!withPagination) data = null;
