@@ -1,16 +1,33 @@
-# flutter_test_work
+# Flutter test project
 
-A new Flutter project starting.
+## Packages
 
-## Getting Started
+This project use:
 
-This project is a starting point for a Flutter application.
+- [provider](https://pub.dev/packages/provider)
+- [http](https://pub.dev/packages/http)
+- [cache_network_image](https://pub.dev/packages/cached_network_image)
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter pub get
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## How to run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone this repository
+
+```bash
+git clone git@github.com:FranciscoRdz2001/flutter_test.git
+```
+2. Get packages
+
+```bash
+flutter pub get
+```
+
+3. Run project
+
+```bash
+flutter run
+```
+
