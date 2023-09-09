@@ -82,6 +82,8 @@ class PlaceDetailsPage extends StatelessWidget {
                     PlaceDataWidget(place: place.data!),
                     const SizedBox(height: 16),
                     NerbyPlacesWidget(place: place.data!),
+                    const SizedBox(height: 16),
+                    PlaceScheduleWidget(schedules: place.data!.schedules),
                   ],
                 ],
               ),
