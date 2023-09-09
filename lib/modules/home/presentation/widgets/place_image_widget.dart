@@ -31,11 +31,7 @@ class PlaceImageWidget extends StatelessWidget {
               height: size,
               fit: BoxFit.cover,
               progressIndicatorBuilder: (context, url, progress) {
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: progress.progress,
-                  ),
-                );
+                return const Center(child: CircularProgressIndicator());
               },
               errorWidget: (context, url, error) {
                 return const Center(

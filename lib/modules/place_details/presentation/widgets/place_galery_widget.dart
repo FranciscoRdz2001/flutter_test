@@ -43,15 +43,20 @@ class PlaceGaleryWidget extends StatelessWidget {
                   final collapsedImagesSize = width * 0.4;
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxWidth: isFullSize ? width : collapsedImagesSize,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: AppConstants.greyColor,
                       ),
                       child: CachedNetworkImage(
                         imageUrl: e.file,
                         height: 100,
                         fit: BoxFit.cover,
                         width: isFullSize ? width : collapsedImagesSize,
+                        progressIndicatorBuilder: (context, url, progress) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
                       ),
                     ),
                   );
