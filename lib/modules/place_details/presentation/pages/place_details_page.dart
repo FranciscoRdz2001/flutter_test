@@ -87,8 +87,13 @@ class PlaceDetailsPage extends StatelessWidget {
                       PlaceScheduleWidget(schedules: place.data!.schedules),
                       const SizedBox(height: 16),
                     ],
-                    if (place.data!.amenities.isNotEmpty)
+                    if (place.data!.amenities.isNotEmpty) ...[
                       PlaceAmenitiesWidget(amenities: place.data!.amenities),
+                      const SizedBox(height: 16),
+                    ],
+                    if (place.data!.gallery.isNotEmpty) ...[
+                      PlaceGaleryWidget(images: place.data!.gallery),
+                    ],
                   ],
                 ],
               ),
