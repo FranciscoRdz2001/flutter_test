@@ -21,11 +21,23 @@ class PlaceDataWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (place.categories.isNotEmpty) ...[
-            Text(
-              place.categories.first.name,
-              style: StylesUtil.w400(14, Colors.grey[400]),
+            Wrap(
+              spacing: 8,
+              runSpacing: -8,
+              children: [
+                ...place.categories.map(
+                  (e) => Chip(
+                    backgroundColor: AppConstants.greyColor,
+                    padding: EdgeInsets.zero,
+                    label: Text(
+                      e.name,
+                      style: StylesUtil.w500(10),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
           ],
           Row(
             children: [

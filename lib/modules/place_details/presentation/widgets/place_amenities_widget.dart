@@ -32,7 +32,7 @@ class PlaceAmenitiesWidget extends StatelessWidget {
           const SizedBox(height: 16),
           Wrap(
             spacing: 8,
-            runSpacing: 0,
+            runSpacing: -8,
             children: [
               ...amenities.map(
                 (e) => Chip(
