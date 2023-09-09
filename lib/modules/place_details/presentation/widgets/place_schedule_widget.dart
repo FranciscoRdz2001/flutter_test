@@ -53,12 +53,12 @@ class PlaceScheduleWidget extends StatelessWidget {
                   Expanded(
                     child: Text(
                       _days[e.weekday] ?? '',
-                      style: StylesUtil.w500(16),
+                      style: StylesUtil.w500(14),
                     ),
                   ),
                   Text(
                     '${e.start} - ${e.end}',
-                    style: StylesUtil.w400(16, Colors.grey),
+                    style: StylesUtil.w400(12, Colors.grey),
                   ),
                 ],
               ),
